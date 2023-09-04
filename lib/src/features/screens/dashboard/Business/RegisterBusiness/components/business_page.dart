@@ -2,9 +2,17 @@ import 'package:flutter/material.dart';
 
 class RegisterBody extends StatefulWidget {
   const RegisterBody(
-      {super.key, required this.addBusiness, required this.businessName});
+      {super.key,
+      required this.addBusiness,
+      required this.businessName,
+      required this.registrationNumber,
+      required this.businessType,
+      required this.businessTerms});
   final Function(bool added) addBusiness;
   final Function(String businessName) businessName;
+  final Function(String businessRegNumber) registrationNumber;
+  final Function(String type) businessType;
+  final Function(String terms) businessTerms;
 
   @override
   State<RegisterBody> createState() => _RegisterBodyState();
@@ -44,8 +52,6 @@ class _RegisterBodyState extends State<RegisterBody>
     "Hospitality and Tourism"
   ];
 
-  TextEditingController businessName = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
@@ -79,12 +85,13 @@ class _RegisterBodyState extends State<RegisterBody>
                               child: Text(e),
                             ))
                         .toList(),
-                    onChanged: (value) {},
+                    onChanged: (value) {
+                      widget.businessType(value!);
+                    },
                   ),
                   Padding(
                     padding: const EdgeInsets.all(5.0),
                     child: TextField(
-                      controller: businessName,
                       onChanged: (value) {
                         widget.businessName(value);
                       },
@@ -96,22 +103,14 @@ class _RegisterBodyState extends State<RegisterBody>
                                   BorderRadius.all(Radius.circular(10)))),
                     ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.all(5.0),
+                  Padding(
+                    padding: const EdgeInsets.all(5.0),
                     child: TextField(
-                      decoration: InputDecoration(
-                          hintText: "Business (Company) Owner",
-                          contentPadding: EdgeInsets.all(20),
-                          border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10)))),
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.all(5.0),
-                    child: TextField(
+                      onChanged: (value) {
+                        widget.registrationNumber(value);
+                      },
                       keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                           hintText: "Business Registration Number",
                           contentPadding: EdgeInsets.all(20),
                           border: OutlineInputBorder(
@@ -119,10 +118,13 @@ class _RegisterBodyState extends State<RegisterBody>
                                   BorderRadius.all(Radius.circular(10)))),
                     ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.all(5.0),
+                  Padding(
+                    padding: const EdgeInsets.all(5.0),
                     child: TextField(
-                      decoration: InputDecoration(
+                      onChanged: (value) {
+                        widget.businessTerms(value);
+                      },
+                      decoration: const InputDecoration(
                           hintText: "Business terms (Optional)",
                           contentPadding: EdgeInsets.all(20),
                           border: OutlineInputBorder(
