@@ -54,6 +54,8 @@ flutter:
     - assets/images/organize.jpeg
     - assets/images/alert.png
     - assets/images/tax.jpeg
+    - assets/images/welcome.png
+    - assets/images/business.png
 
   # example:
   # fonts:

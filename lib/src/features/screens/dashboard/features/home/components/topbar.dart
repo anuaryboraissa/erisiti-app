@@ -1,10 +1,12 @@
 import 'package:erisiti/src/constants/styles/style.dart';
 import 'package:erisiti/src/features/dialogue/animated_dialogue.dart';
 import 'package:erisiti/src/features/dialogue/fade_animations.dart';
-import 'package:erisiti/src/features/screens/dashboard/Business/home.dart';
+
 import 'package:erisiti/src/features/screens/dashboard/features/home/bloc/home_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../Business/welcome.dart';
 
 class HomeTopBar extends StatefulWidget {
   const HomeTopBar(
@@ -107,8 +109,9 @@ class _HomeTopBarState extends State<HomeTopBar>
                             widget.homeBloc.add(LogoutEvent());
                           } else {
                             Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const BusinessHome(),
+                              builder: (context) => const WelcomePage(),
                             ));
+                            //business navigate
                           }
                         },
                         icon: const CircleAvatar(

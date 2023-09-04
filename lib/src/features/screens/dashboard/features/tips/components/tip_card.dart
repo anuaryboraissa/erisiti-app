@@ -1,8 +1,8 @@
 import 'package:erisiti/src/constants/styles/style.dart';
 import 'package:flutter/material.dart';
 
-class BusinessCard extends StatelessWidget {
-  const BusinessCard(
+class TipsCard extends StatelessWidget {
+  const TipsCard(
       {super.key,
       required this.image,
       required this.title,

@@ -1,5 +1,5 @@
-class AvailableBusiness {
-  static const List<Map> businesses = [
+class AvailableTips {
+  static const List<Map> tips = [
     {
       "id": 1,
       "name": "Organize and categorize your receipts",

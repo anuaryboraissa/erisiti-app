@@ -15,7 +15,7 @@ class AvailableReceipts {
   static final List<Map<String, dynamic>> dummy = [
     {
       "issuer": {
-        "name": "Anuary Bora",
+        "name": "Anuary Boraa",
         "Business": "Workshop",
         "phone": "+255752738238",
         "email": "anu@gmail.com",

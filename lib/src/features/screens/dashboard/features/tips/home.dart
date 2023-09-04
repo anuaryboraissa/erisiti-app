@@ -1,16 +1,15 @@
-import 'package:erisiti/src/features/screens/dashboard/Business/components/body.dart';
-
+import 'components/body.dart';
 import 'components/topBar.dart';
 import 'package:flutter/material.dart';
 
-class BusinessHome extends StatefulWidget {
-  const BusinessHome({super.key});
+class TipsHome extends StatefulWidget {
+  const TipsHome({super.key});
 
   @override
-  State<BusinessHome> createState() => _BusinessHomeState();
+  State<TipsHome> createState() => _TipsHomeState();
 }
 
-class _BusinessHomeState extends State<BusinessHome> {
+class _TipsHomeState extends State<TipsHome> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -25,7 +24,7 @@ class _BusinessHomeState extends State<BusinessHome> {
                 HomeBusinessTopBar(
                   size: size,
                 ),
-                HomeBusinessBody(size: size)
+                HomeTipsBody(size: size)
               ],
             ),
           ),

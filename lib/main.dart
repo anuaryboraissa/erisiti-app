@@ -3,6 +3,7 @@ import 'package:erisiti/src/features/bloc/global_bloc.dart';
 import 'package:erisiti/src/features/screens/dashboard/dashboard.dart';
 import 'package:erisiti/src/features/screens/dashboard/features/home/bloc/home_bloc.dart';
 import 'package:erisiti/src/features/screens/dashboard/features/receipts/bloc/receipt_page_bloc.dart';
+import 'package:erisiti/src/features/screens/dashboard/features/tips/bloc/home_tips_bloc.dart';
 import 'package:erisiti/src/features/screens/login/bloc/login_bloc.dart';
 import 'package:erisiti/src/features/screens/onboarding/pages/mainPage.dart';
 import 'package:erisiti/src/features/screens/registration/bloc/register_bloc.dart';
@@ -10,8 +11,6 @@ import 'package:erisiti/src/features/screens/registration/bloc/register_bloc.dar
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'src/features/screens/dashboard/Business/bloc/home_business_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -57,7 +56,7 @@ class _ErisitiState extends State<Erisiti> {
           create: (context) => HomeBloc(),
         ),
         BlocProvider(
-          create: (context) => HomeBusinessBloc(),
+          create: (context) => HomeTipsBloc(),
         )
       ],
       child: BlocBuilder<GlobalBloc, GlobalState>(

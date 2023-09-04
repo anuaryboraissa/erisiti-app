@@ -1,8 +1,7 @@
-import 'package:erisiti/src/features/screens/dashboard/Business/home.dart';
 import 'package:erisiti/src/features/screens/dashboard/features/bottombar.dart';
 import 'package:erisiti/src/features/screens/dashboard/features/home/home.dart';
 import 'package:erisiti/src/features/screens/dashboard/features/more/more.dart';
-import 'package:erisiti/src/features/screens/dashboard/features/news/news.dart';
+import 'package:erisiti/src/features/screens/dashboard/features/tips/home.dart';
 import 'package:flutter/material.dart';
 
 import 'features/receipts/search/search.dart';
@@ -31,7 +30,7 @@ class _DashboardPageState extends State<DashboardPage> {
       );
       pages.add(const SearchReceiptPage());
       pages.add(const MorePage());
-      pages.add(const BusinessHome());
+      pages.add(const TipsHome());
     });
 
     super.initState();
