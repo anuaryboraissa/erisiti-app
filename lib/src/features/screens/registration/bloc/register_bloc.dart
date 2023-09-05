@@ -20,6 +20,8 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     on<StoreStateEvent>(storeStateEvent);
     on<RegistrationEvent>(registrationEvent);
     on<ResetPasswordEvent>(resetPasswordEvent);
+    on<ValidatePhoneEvent>(validatePhoneEvent);
+    on<ValidateFullNameEvent>(validateFullNameEvent);
   }
 
   FutureOr<void> registerEvent(
@@ -27,9 +29,14 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
 
   FutureOr<void> validateTinNumberEvent(
       ValidateTinNumberEvent event, Emitter<RegisterState> emit) {
-    if (isInteger(int.parse(event.tinNumber)) && event.tinNumber.length == 9) {
-      emit(ValidateTinNumberState(true));
-    } else {
+    try {
+      int number = int.parse(event.tinNumber);
+      if (isInteger(number) && event.tinNumber.length == 9) {
+        emit(ValidateTinNumberState(true));
+      } else {
+        emit(ValidateTinNumberState(false));
+      }
+    } on Exception catch (e) {
       emit(ValidateTinNumberState(false));
     }
   }
@@ -112,6 +119,27 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
       }
     } else {
       emit(PasswordResetState(false));
+    }
+  }
+
+  FutureOr<void> validatePhoneEvent(
+      ValidatePhoneEvent event, Emitter<RegisterState> emit) {
+    if (event.phone.length == 13 &&
+        event.phone.startsWith("+255") &&
+        (event.phone.substring(4, 5) == "6" ||
+            event.phone.substring(4, 5) == "7")) {
+      emit(ValidatePhoneNumberState(true));
+    } else {
+      emit(ValidatePhoneNumberState(false));
+    }
+  }
+
+  FutureOr<void> validateFullNameEvent(
+      ValidateFullNameEvent event, Emitter<RegisterState> emit) {
+    if (event.name.isNotEmpty && event.name.contains(" ")) {
+      emit(ValidateFullNameState(true));
+    } else {
+      emit(ValidateFullNameState(false));
     }
   }
 }

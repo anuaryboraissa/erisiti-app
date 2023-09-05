@@ -35,6 +35,18 @@ final class ValidatePasswordMatchEvent extends RegisterEvent {
   ValidatePasswordMatchEvent(this.password, this.passwordConfirm);
 }
 
+final class ValidatePhoneEvent extends RegisterEvent {
+  final String phone;
+
+  ValidatePhoneEvent(this.phone);
+}
+
+final class ValidateFullNameEvent extends RegisterEvent {
+  final String name;
+
+  ValidateFullNameEvent(this.name);
+}
+
 final class StoreStateEvent extends RegisterEvent {
   final List<bool?> validity;
   StoreStateEvent(this.validity);

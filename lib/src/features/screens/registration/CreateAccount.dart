@@ -36,11 +36,17 @@ class _CreateAccountState extends State<CreateAccount> {
   var passwordMatch;
   // ignore: prefer_typing_uninitialized_variables
   var tinValid;
+  // ignore: prefer_typing_uninitialized_variables
+  var fullNameValid;
+  // ignore: prefer_typing_uninitialized_variables
+  var phoneValid;
 
   RegisterBloc registerBloc = RegisterBloc();
   TextEditingController realTinNumber = TextEditingController();
   TextEditingController realPassword = TextEditingController();
   TextEditingController passwordConfirm = TextEditingController();
+  TextEditingController fullName = TextEditingController();
+  TextEditingController phoneNumber = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -77,18 +83,28 @@ class _CreateAccountState extends State<CreateAccount> {
             passwordValid = state.valid;
           } else if (state is ValidatePasswordMatchState) {
             passwordMatch = state.valid;
+          } else if (state is ValidatePhoneNumberState) {
+            phoneValid = state.valid;
+          } else if (state is ValidateFullNameState) {
+            fullNameValid = state.valid;
           } else if (state is RegistrationState) {
             Fluttertoast.showToast(
                 msg:
-                    "code ${state.result['status']} status ${state.result['message']} }");
-            realTinNumber.clear();
-            realPassword.clear();
-            passwordConfirm.clear();
-            _selectedAccount = _accountChoices[0];
-            passwordValid = null;
-            passwordMatch = null;
-            accountValid = null;
-            tinValid = null;
+                    "code ${state.result['status']} status ${state.result['message']} ");
+            if (state.result['status'] == "success") {
+              realTinNumber.clear();
+              realPassword.clear();
+              passwordConfirm.clear();
+              fullName.clear();
+              phoneNumber.clear();
+              _selectedAccount = _accountChoices[0];
+              passwordValid = null;
+              passwordMatch = null;
+              accountValid = null;
+              tinValid = null;
+              phoneValid = null;
+              fullNameValid = null;
+            }
           }
           return Container(
             padding: const EdgeInsets.all(21.0),
@@ -109,6 +125,145 @@ class _CreateAccountState extends State<CreateAccount> {
                   borderRadius: 7.0,
                   passwordStyle: false,
                   login: false,
+                ),
+                InputLabelsWidgets(label: "Full name"),
+                Padding(
+                  padding:
+                      const EdgeInsets.only(left: 8.0, right: 8, bottom: 8),
+                  child: TextField(
+                    controller: fullName,
+                    onChanged: (value) {
+                      registerBloc.add(ValidateFullNameEvent(value));
+                    },
+                    decoration: InputDecoration(
+                      suffixIcon: fullNameValid == null
+                          ? null
+                          : fullNameValid!
+                              ? const Icon(
+                                  Icons.check,
+                                  color: ApplicationStyles.realAppColor,
+                                  size: 15,
+                                )
+                              : const Icon(
+                                  Icons.warning,
+                                  color: Colors.red,
+                                  size: 15,
+                                ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            width: 3,
+                            color: fullNameValid != null
+                                ? !fullNameValid!
+                                    ? Colors.red
+                                    : ApplicationStyles.realAppColor
+                                : ApplicationStyles.realAppColor),
+                        borderRadius: BorderRadius.circular(7),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            width: 3,
+                            color: fullNameValid != null
+                                ? !fullNameValid!
+                                    ? Colors.red
+                                    : ApplicationStyles.realAppColor
+                                : ApplicationStyles.realAppColor),
+                        borderRadius: BorderRadius.circular(7),
+                      ),
+                      hintText: "Enter full name",
+                      contentPadding: const EdgeInsets.only(left: 600.0),
+                      border: const OutlineInputBorder(),
+                      prefixIcon: Container(
+                        margin: const EdgeInsets.only(right: 8),
+                        height: 50.0,
+                        width: 30.0,
+                        decoration: BoxDecoration(
+                          border: fullNameValid != null
+                              ? fullNameValid!
+                                  ? null
+                                  : Border.all(color: Colors.red)
+                              : null,
+                          color: ApplicationStyles.realAppColor,
+                          borderRadius: const BorderRadius.only(
+                              bottomLeft: Radius.circular(7),
+                              topLeft: Radius.circular(7)),
+                        ),
+                        child: const Icon(
+                          Icons.person,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                InputLabelsWidgets(label: "Phone Number"),
+                Padding(
+                  padding:
+                      const EdgeInsets.only(left: 8.0, right: 8, bottom: 8),
+                  child: TextField(
+                    controller: phoneNumber,
+                    keyboardType: TextInputType.phone,
+                    onChanged: (value) {
+                      registerBloc.add(ValidatePhoneEvent(value));
+                    },
+                    decoration: InputDecoration(
+                      suffixIcon: phoneValid == null
+                          ? null
+                          : phoneValid!
+                              ? const Icon(
+                                  Icons.check,
+                                  color: ApplicationStyles.realAppColor,
+                                  size: 15,
+                                )
+                              : const Icon(
+                                  Icons.warning,
+                                  color: Colors.red,
+                                  size: 15,
+                                ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            width: 3,
+                            color: phoneValid != null
+                                ? !phoneValid!
+                                    ? Colors.red
+                                    : ApplicationStyles.realAppColor
+                                : ApplicationStyles.realAppColor),
+                        borderRadius: BorderRadius.circular(7),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            width: 3,
+                            color: phoneValid != null
+                                ? !phoneValid!
+                                    ? Colors.red
+                                    : ApplicationStyles.realAppColor
+                                : ApplicationStyles.realAppColor),
+                        borderRadius: BorderRadius.circular(7),
+                      ),
+                      hintText: "begins with +255",
+                      contentPadding: const EdgeInsets.only(left: 600.0),
+                      border: const OutlineInputBorder(),
+                      prefixIcon: Container(
+                        margin: const EdgeInsets.only(right: 8),
+                        height: 50.0,
+                        width: 30.0,
+                        decoration: BoxDecoration(
+                          border: phoneValid != null
+                              ? phoneValid!
+                                  ? null
+                                  : Border.all(color: Colors.red)
+                              : null,
+                          color: ApplicationStyles.realAppColor,
+                          borderRadius: const BorderRadius.only(
+                              bottomLeft: Radius.circular(7),
+                              topLeft: Radius.circular(7)),
+                        ),
+                        child: const Icon(
+                          Icons.phone,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
                 InputLabelsWidgets(label: "Choose Account"),
                 Padding(
@@ -280,3 +435,6 @@ class _CreateAccountState extends State<CreateAccount> {
     );
   }
 }
+
+
+// /167538926

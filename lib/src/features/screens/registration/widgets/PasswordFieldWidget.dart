@@ -128,6 +128,7 @@ class _PasswordFieldWidgetState extends State<PasswordFieldWidget> {
               widget.registerBloc.add(ValidatePasswordEvent(password));
 
               if (widget.confirmPassword != null &&
+                  widget.passwordValid != null &&
                   widget.passwordValid! &&
                   (state is ValidatePasswordState)) {
                 print("imepitaa!!");

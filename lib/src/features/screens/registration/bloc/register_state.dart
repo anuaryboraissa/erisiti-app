@@ -11,6 +11,18 @@ final class ValidateTinNumberState extends RegisterState {
   ValidateTinNumberState(this.valid);
 }
 
+final class ValidatePhoneNumberState extends RegisterState {
+  final bool valid;
+
+  ValidatePhoneNumberState(this.valid);
+}
+
+final class ValidateFullNameState extends RegisterState {
+  final bool valid;
+
+  ValidateFullNameState(this.valid);
+}
+
 final class ValidateUserAccountState extends RegisterState {
   final bool valid;
 

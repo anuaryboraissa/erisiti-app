@@ -31,6 +31,7 @@ class _DashboardPageState extends State<DashboardPage> {
       pages.add(const SearchReceiptPage());
       pages.add(const MorePage());
       pages.add(const TipsHome());
+      pages.add(const Center(child: Text("Issue receipt")));
     });
 
     super.initState();
