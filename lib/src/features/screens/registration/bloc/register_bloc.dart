@@ -99,10 +99,12 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     if (event.password == event.passwordConfirm) {
       var result = await RegistrationService().registerUser(event.tinNumber,
           event.account, event.password, event.passwordConfirm);
-      emit(RegistrationState(result));
+      emit(RegistrationState(result, event.account, event.tinNumber));
     } else {
       emit(RegistrationState(
-          const {"message": "passwords doesn't match ", "status": "fail"}));
+          const {"message": "passwords doesn't match ", "status": "fail"},
+          event.account,
+          event.tinNumber));
     }
   }
 

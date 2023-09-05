@@ -1,3 +1,5 @@
+// ignore_for_file: library_prefixes
+
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -6,17 +8,16 @@ import 'package:flutter/services.dart' as rootBundle;
 import '../registerProducts/registerProducts.dart';
 import 'widgets.dart/productsActionButton.dart';
 
-class productList extends StatefulWidget {
-  const productList({super.key});
+class ProductList extends StatefulWidget {
+  const ProductList({super.key});
 
   @override
-  State<productList> createState() => _productListState();
+  State<ProductList> createState() => _ProductListState();
 }
 
-class _productListState extends State<productList> {
+class _ProductListState extends State<ProductList> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     readJSON();
   }
@@ -26,7 +27,7 @@ class _productListState extends State<productList> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.cyan,
-        title: Text(
+        title: const Text(
           "The Business",
           style: TextStyle(
               color: Colors.white, fontWeight: FontWeight.bold, fontSize: 21),
@@ -35,91 +36,95 @@ class _productListState extends State<productList> {
           IconButton(
               onPressed: () {
                 Navigator.push(
-                  context, 
-                  MaterialPageRoute(
-                    builder: (context) => RegisterProduct(),
-                  )
-                );
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const RegisterProduct(),
+                    ));
               },
-              icon: Icon(
+              icon: const Icon(
                 CupertinoIcons.add,
                 color: Colors.white,
               )),
         ],
       ),
-      body: ListView.builder(
-        itemCount: productList.length,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Container(
-              padding: EdgeInsets.symmetric(vertical: 21),
-              decoration: BoxDecoration(
-                  color: Colors.cyan.shade700,
-                  borderRadius: BorderRadius.circular(21),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black,
-                      blurRadius: 7.0,
-                    )
-                  ]),
-              child: Column(
-                children: [
-                  ListTile(
-                    leading: CircleAvatar(
-                      backgroundColor: Colors.white,
-                      child: Text(
-                        "${index + 1}",
-                        style: TextStyle(
-                            color: Colors.cyan,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 21),
-                      ),
-                    ),
-                    title: Text(
-                      productList[index]['name'].toString(),
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 21),
-                    ),
-                    trailing: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      body: productList.isEmpty
+          ? const Center(
+              child: CircularProgressIndicator(),
+            )
+          : ListView.builder(
+              itemCount: productList.length,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(vertical: 21),
+                    decoration: BoxDecoration(
+                        color: Colors.cyan.shade700,
+                        borderRadius: BorderRadius.circular(21),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Colors.black,
+                            blurRadius: 7.0,
+                          )
+                        ]),
+                    child: Column(
                       children: [
-                        Text(
-                          "${productList[index]['currency'].toString()} ${productList[index]['price'].toString()}",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 14),
+                        ListTile(
+                          leading: CircleAvatar(
+                            backgroundColor: Colors.white,
+                            child: Text(
+                              "${index + 1}",
+                              style: const TextStyle(
+                                  color: Colors.cyan,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 21),
+                            ),
+                          ),
+                          title: Text(
+                            productList[index]['name'].toString(),
+                            style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 21),
+                          ),
+                          trailing: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Text(
+                                "${productList[index]['currency'].toString()} ${productList[index]['price'].toString()}",
+                                style: const TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14),
+                              ),
+                              Text(
+                                "Per ${productList[index]['unit'].toString()}",
+                                style: const TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14),
+                              ),
+                            ],
+                          ),
                         ),
-                        Text(
-                          "Per ${productList[index]['unit'].toString()}",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 14),
-                        ),
+                        const productsActionButtons(),
                       ],
                     ),
                   ),
-                  productsActionButtons(),
-                ],
-              ),
+                );
+              },
             ),
-          );
-        },
-      ),
     );
   }
 
-  late List<dynamic> productList;
-  Future<void> readJSON() async {
-    final String theFileWithJSONData =
-        await rootBundle.rootBundle.loadString('assets/jsonFiles/productList.json');
-    final capturedJSONData = await json.decode(theFileWithJSONData);
-    setState(() {
-      productList = capturedJSONData;
+  List<dynamic> productList = [];
+  readJSON() {
+    rootBundle.rootBundle
+        .loadString('assets/jsonFiles/productList.json')
+        .then((value) {
+      setState(() {
+        productList = json.decode(value);
+      });
     });
   }
 }

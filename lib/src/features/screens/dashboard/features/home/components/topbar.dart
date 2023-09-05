@@ -109,7 +109,9 @@ class _HomeTopBarState extends State<HomeTopBar>
                             widget.homeBloc.add(LogoutEvent());
                           } else {
                             Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const WelcomePage(),
+                              builder: (context) => const WelcomePage(
+                                tinNumber: "",
+                              ),
                             ));
                             //business navigate
                           }

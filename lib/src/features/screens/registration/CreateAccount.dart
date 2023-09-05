@@ -1,4 +1,5 @@
 import 'package:erisiti/src/constants/styles/style.dart';
+import 'package:erisiti/src/features/screens/dashboard/Business/welcome.dart';
 import 'package:erisiti/src/features/screens/login/bloc/login_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -47,6 +48,13 @@ class _CreateAccountState extends State<CreateAccount> {
   TextEditingController passwordConfirm = TextEditingController();
   TextEditingController fullName = TextEditingController();
   TextEditingController phoneNumber = TextEditingController();
+
+  navigate(Widget destination) {
+    Navigator.popUntil(context, (route) => route.isFirst);
+    Navigator.of(context).pushReplacement(MaterialPageRoute(
+      builder: (context) => destination,
+    ));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -104,6 +112,14 @@ class _CreateAccountState extends State<CreateAccount> {
               tinValid = null;
               phoneValid = null;
               fullNameValid = null;
+              //
+              if (state.userType == "Business") {
+                navigate(WelcomePage(
+                  tinNumber: state.tinNumber,
+                ));
+              } else {
+                navigate(const Login());
+              }
             }
           }
           return Container(

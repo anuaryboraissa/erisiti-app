@@ -1,6 +1,7 @@
 import 'package:erisiti/business/businessList/widget/userBusinessListWidget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 class BusinessList extends StatelessWidget {
   const BusinessList({super.key});
 
@@ -9,35 +10,28 @@ class BusinessList extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.cyan,
-        title: Text(
+        title: const Text(
           "My Business",
           style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-            fontSize: 21
-          ),
+              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 21),
         ),
         actions: [
           IconButton(
-            onPressed: (){}, 
-            icon: Icon(
-              CupertinoIcons.add,
-              color: Colors.white,
-            )
-          ),
+              onPressed: () {},
+              icon: const Icon(
+                CupertinoIcons.add,
+                color: Colors.white,
+              )),
           TextButton(
-            onPressed: (){}, 
-            child: Text(
+            onPressed: () {},
+            child: const Text(
               "issue",
-              style: TextStyle(
-                color: Colors.white
-              ),
+              style: TextStyle(color: Colors.white),
             ),
           )
         ],
       ),
-      body: userBusinessListWidget(),
+      body: const UserBusinessListWidget(),
     );
   }
 }
-

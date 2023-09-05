@@ -3,7 +3,8 @@ import 'package:erisiti/src/features/screens/dashboard/Business/RegisterBusiness
 import 'package:flutter/material.dart';
 
 class WelcomePage extends StatefulWidget {
-  const WelcomePage({super.key});
+  const WelcomePage({super.key, required this.tinNumber});
+  final String tinNumber;
 
   @override
   State<WelcomePage> createState() => _WelcomePageState();
@@ -76,7 +77,9 @@ class _WelcomePageState extends State<WelcomePage> {
                   backgroundColor: ApplicationStyles.realAppColor),
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const RegisterBusiness(),
+                  builder: (context) => RegisterBusiness(
+                    tinNumber: widget.tinNumber,
+                  ),
                 ));
               },
               child: const Text("Let's get started")),

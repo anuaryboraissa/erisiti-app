@@ -6,8 +6,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import '../../../../../constants/styles/style.dart';
 
 class RegisterBusiness extends StatefulWidget {
-  const RegisterBusiness({super.key});
-
+  const RegisterBusiness({super.key, required this.tinNumber});
+  final String tinNumber;
   @override
   State<RegisterBusiness> createState() => _RegisterBusinessState();
 }

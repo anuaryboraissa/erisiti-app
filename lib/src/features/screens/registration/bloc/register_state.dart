@@ -49,8 +49,10 @@ final class StoredUserState extends RegisterState {
 
 final class RegistrationState extends RegisterState {
   final Map result;
+  final String userType;
+  final String tinNumber;
 
-  RegistrationState(this.result);
+  RegistrationState(this.result, this.userType, this.tinNumber);
 }
 
 final class PasswordResetState extends RegisterState {
