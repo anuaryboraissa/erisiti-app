@@ -1,3 +1,4 @@
+import 'package:erisiti/business/businessList/businessList.dart';
 import 'package:erisiti/src/features/screens/dashboard/features/bottombar.dart';
 import 'package:erisiti/src/features/screens/dashboard/features/home/home.dart';
 import 'package:erisiti/src/features/screens/dashboard/features/more/more.dart';
@@ -31,7 +32,7 @@ class _DashboardPageState extends State<DashboardPage> {
       pages.add(const SearchReceiptPage());
       pages.add(const MorePage());
       pages.add(const TipsHome());
-      pages.add(const Center(child: Text("Issue receipt")));
+      pages.add(const BusinessList());
     });
 
     super.initState();

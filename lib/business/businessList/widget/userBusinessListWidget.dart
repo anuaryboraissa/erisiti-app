@@ -44,7 +44,7 @@ class _userBusinessListWidgetState extends State<userBusinessListWidget> {
                 Text(
                   "${index+1}. ${businessInfo[index]['name'].toString()}",
                   style: TextStyle(
-                    color: Colors.white
+                    color: Colors.white,
                   ),
                 ),
                 Icon(
