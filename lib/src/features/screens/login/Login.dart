@@ -1,3 +1,4 @@
+import 'package:erisiti/regProduct/regProducts.dart';
 import 'package:erisiti/src/constants/styles/style.dart';
 import 'package:erisiti/src/features/screens/login/verification/verifyTin.dart';
 import 'package:erisiti/src/features/screens/login/widgets/password_field.dart';
@@ -164,6 +165,13 @@ class _LoginState extends State<Login> {
                     child: const Text('SIGN UP'),
                   ),
                 ),
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const RegProducts(),
+                      ));
+                    },
+                    child: const Text("Product"))
               ],
             ),
           );
