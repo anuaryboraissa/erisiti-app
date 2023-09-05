@@ -7,6 +7,7 @@ import 'package:erisiti/src/features/screens/registration/CreateAccount.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../business/businessList/businessList.dart';
 import 'bloc/login_bloc.dart';
 import 'widgets/inputLabelsWidget.dart';
 
@@ -171,7 +172,33 @@ class _LoginState extends State<Login> {
                         builder: (context) => const RegProducts(),
                       ));
                     },
-                    child: const Text("Product"))
+                    child: const Text("Product")
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context, 
+                        MaterialPageRoute(
+                          builder: (context) => BusinessList(),
+                        )
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      side: const BorderSide(
+                          color: ApplicationStyles.realAppColor),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.0)),
+                      textStyle: const TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.bold),
+                      backgroundColor: Colors.white,
+                      foregroundColor: Colors.black,
+                      minimumSize: const Size(200.0, 60.0),
+                    ),
+                    child: const Text('BUSINESS'),
+                  ),
+                ),
               ],
             ),
           );
