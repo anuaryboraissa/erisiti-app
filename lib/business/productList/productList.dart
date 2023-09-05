@@ -1,9 +1,8 @@
 // ignore_for_file: library_prefixes
 
-import 'dart:convert';
+import 'package:erisiti/business/productList/helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' as rootBundle;
 
 import '../registerProducts/registerProducts.dart';
 import 'widgets.dart/productsActionButton.dart';
@@ -119,11 +118,9 @@ class _ProductListState extends State<ProductList> {
 
   List<dynamic> productList = [];
   readJSON() {
-    rootBundle.rootBundle
-        .loadString('assets/jsonFiles/productList.json')
-        .then((value) {
+    ProductHelper.getProducts().then((value) {
       setState(() {
-        productList = json.decode(value);
+        productList = value;
       });
     });
   }

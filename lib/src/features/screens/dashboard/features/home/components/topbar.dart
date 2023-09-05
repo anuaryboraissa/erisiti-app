@@ -10,9 +10,13 @@ import '../../../Business/welcome.dart';
 
 class HomeTopBar extends StatefulWidget {
   const HomeTopBar(
-      {super.key, required this.loggedUser, required this.homeBloc});
+      {super.key,
+      required this.loggedUser,
+      required this.homeBloc,
+      required this.title});
   final Map loggedUser;
   final HomeBloc homeBloc;
+  final String title;
 
   @override
   State<HomeTopBar> createState() => _HomeTopBarState();
@@ -77,14 +81,16 @@ class _HomeTopBarState extends State<HomeTopBar>
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Welcome,",
+                        widget.title,
                         style: ApplicationStyles.getStyle(true, 20, null),
                       ),
                       const SizedBox(
                         height: 1,
                       ),
                       Text(
-                        "${widget.loggedUser['firstName']} ${widget.loggedUser['lastName']}",
+                        widget.loggedUser['firstName'] == null
+                            ? "loading...."
+                            : "${widget.loggedUser['firstName']} ${widget.loggedUser['lastName']}",
                         style: ApplicationStyles.getStyle(
                             false, 15, ApplicationStyles.realAppColor),
                       ),

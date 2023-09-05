@@ -21,8 +21,8 @@ class _BottomNavigationState extends State<BottomNavigation> {
       decoration: const BoxDecoration(
           boxShadow: [
             BoxShadow(
-                offset: Offset(3, 3),
-                blurRadius: 2,
+                offset: Offset(1, 1),
+                blurRadius: 0.1,
                 color: ApplicationStyles.realAppColor)
           ],
           color: Colors.white,

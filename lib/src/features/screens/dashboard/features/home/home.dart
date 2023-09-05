@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
           children: [
             HomeTopBar(
               loggedUser: widget.loggedUser,
-              homeBloc: homeBloc,
+              homeBloc: homeBloc, title: "Welcome,",
             ),
             HomeBody(
               tinNumber: widget.loggedUser['tinNumber'],

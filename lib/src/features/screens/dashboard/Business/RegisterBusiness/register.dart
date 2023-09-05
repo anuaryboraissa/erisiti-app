@@ -31,7 +31,10 @@ class _RegisterBusinessState extends State<RegisterBusiness> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const BusinessTopBar(),
+              const BusinessTopBar(
+                image: 'Business',
+                title: "assets/images/business.png",
+              ),
               contentHolder(),
               if (addBusiness)
                 RegisterBody(

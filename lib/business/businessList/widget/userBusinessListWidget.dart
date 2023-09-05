@@ -26,7 +26,7 @@ class _UserBusinessListWidgetState extends State<UserBusinessListWidget> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      padding: EdgeInsets.symmetric(horizontal: 7),
+      padding: const EdgeInsets.symmetric(horizontal: 7),
       itemCount: businessInfo.length,
       itemBuilder: (context, index) {
         return Padding(
@@ -40,27 +40,27 @@ class _UserBusinessListWidgetState extends State<UserBusinessListWidget> {
                     builder: (context) => const ProductList(),
                   ));
             },
+            style: ButtonStyle(
+                shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(21))),
+                padding: const MaterialStatePropertyAll(EdgeInsets.all(14)),
+                elevation: const MaterialStatePropertyAll(7),
+                alignment: AlignmentDirectional.topStart,
+                backgroundColor:
+                    MaterialStatePropertyAll(Colors.cyan.shade700)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   "${index + 1}. ${businessInfo[index]['name'].toString()}",
-                  style: TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.white),
                 ),
-                Icon(
+                const Icon(
                   CupertinoIcons.forward,
                   color: Colors.white,
                 )
               ],
             ),
-            style: ButtonStyle(
-                shape: MaterialStatePropertyAll(RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(21))),
-                padding: MaterialStatePropertyAll(EdgeInsets.all(14)),
-                elevation: MaterialStatePropertyAll(7),
-                alignment: AlignmentDirectional.topStart,
-                backgroundColor:
-                    MaterialStatePropertyAll(Colors.cyan.shade700)),
           ),
         );
       },

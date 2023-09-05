@@ -36,7 +36,7 @@ class ModelHelper {
           color: sector.color,
           value: calculatePercent(sectors, sector.value),
           radius: radius,
-          title: sector.title,
+          title: "",
           titleStyle: const TextStyle(color: Colors.white, fontSize: 10));
       list.add(data);
     }

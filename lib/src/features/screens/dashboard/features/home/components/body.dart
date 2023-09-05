@@ -74,6 +74,7 @@ class _HomeBodyState extends State<HomeBody> {
                           ),
                           title: 'Total Amount',
                         ),
+                        const RecentReceiptDescription()
                       ],
                     ),
                   )
@@ -94,7 +95,6 @@ class _HomeBodyState extends State<HomeBody> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [Icon(Icons.refresh), Text("Refresh")],
                             )),
-                        const RecentReceiptDescription()
                       ],
                     ),
                   );

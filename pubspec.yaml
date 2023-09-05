@@ -57,6 +57,7 @@ flutter:
     - assets/images/welcome.png
     - assets/images/business.png
     - assets/jsonFiles/
+    - assets/images/issue.png
   # example:
   # fonts:
   #   - family: Schyler

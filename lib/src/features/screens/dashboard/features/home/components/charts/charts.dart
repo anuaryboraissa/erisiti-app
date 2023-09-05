@@ -18,6 +18,8 @@ class _RecentReceiptDescriptionState extends State<RecentReceiptDescription> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Container(
+      // margin: const EdgeInsets.only(top: 10),
+      padding: const EdgeInsets.only(top: 15),
       decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(20)),
       child: Column(

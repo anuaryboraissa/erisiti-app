@@ -2,7 +2,9 @@ import 'package:erisiti/src/constants/styles/style.dart';
 import 'package:flutter/material.dart';
 
 class BusinessTopBar extends StatelessWidget {
-  const BusinessTopBar({super.key});
+  const BusinessTopBar({super.key, required this.title, required this.image});
+  final String title;
+  final String image;
 
   @override
   Widget build(BuildContext context) {
@@ -17,37 +19,40 @@ class BusinessTopBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Column(
+          Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsets.only(left: 8),
+                padding:
+                    EdgeInsets.only(left: 8, top: title == "Business" ? 0 : 10),
                 child: Text(
-                  "Business",
-                  style: TextStyle(fontSize: 24),
+                  title,
+                  style: const TextStyle(fontSize: 24),
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(left: 8.0, bottom: 8),
+                padding: const EdgeInsets.only(left: 8.0, bottom: 8),
                 child: Text(
                   "Information",
                   style: TextStyle(
-                      fontSize: 18, color: ApplicationStyles.realAppColor),
+                      fontSize: title == "Business" ? 18 : 15,
+                      color: ApplicationStyles.realAppColor),
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.only(left: 8.0, top: 18),
-                child: Text(
-                  "Register to continue",
-                  // style: TextStyle(
-                  //     fontSize: 18, color: ApplicationStyles.realAppColor),
-                ),
-              )
+              if (title == "Business")
+                const Padding(
+                  padding: EdgeInsets.only(left: 8.0, top: 18),
+                  child: Text(
+                    "Register to continue",
+                    // style: TextStyle(
+                    //     fontSize: 18, color: ApplicationStyles.realAppColor),
+                  ),
+                )
             ],
           ),
           Image.asset(
-            "assets/images/business.png",
+            image,
             height: size.height * .18,
             width: size.width * .45,
           )

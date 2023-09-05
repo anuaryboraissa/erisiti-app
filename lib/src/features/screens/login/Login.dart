@@ -166,39 +166,6 @@ class _LoginState extends State<Login> {
                     child: const Text('SIGN UP'),
                   ),
                 ),
-                ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const RegProducts(),
-                      ));
-                    },
-                    child: const Text("Product")
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context, 
-                        MaterialPageRoute(
-                          builder: (context) => BusinessList(),
-                        )
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      side: const BorderSide(
-                          color: ApplicationStyles.realAppColor),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.0)),
-                      textStyle: const TextStyle(
-                          fontSize: 20, fontWeight: FontWeight.bold),
-                      backgroundColor: Colors.white,
-                      foregroundColor: Colors.black,
-                      minimumSize: const Size(200.0, 60.0),
-                    ),
-                    child: const Text('BUSINESS'),
-                  ),
-                ),
               ],
             ),
           );

@@ -1,25 +1,16 @@
-import 'package:erisiti/src/constants/styles/animation.dart';
+import 'package:erisiti/business/productList/helper.dart';
 import 'package:flutter/material.dart';
 
-class RegisterBody extends StatefulWidget {
-  const RegisterBody(
-      {super.key,
-      required this.addBusiness,
-      required this.businessName,
-      required this.registrationNumber,
-      required this.businessType,
-      required this.businessTerms});
-  final Function(bool added) addBusiness;
-  final Function(String businessName) businessName;
-  final Function(String businessRegNumber) registrationNumber;
-  final Function(String type) businessType;
-  final Function(String terms) businessTerms;
+import '../../../../../../constants/styles/animation.dart';
+
+class IssueBody extends StatefulWidget {
+  const IssueBody({super.key});
 
   @override
-  State<RegisterBody> createState() => _RegisterBodyState();
+  State<IssueBody> createState() => _IssueBodyState();
 }
 
-class _RegisterBodyState extends State<RegisterBody>
+class _IssueBodyState extends State<IssueBody>
     with SingleTickerProviderStateMixin {
   late Animation animation, delayedAnimation;
   late AnimationController animationController;
@@ -32,6 +23,16 @@ class _RegisterBodyState extends State<RegisterBody>
     Map animate = action.animate();
     animationController = animate['controller'];
     delayedAnimation = animate['delayed'];
+    getProducts();
+  }
+
+  List items = [];
+  getProducts() {
+    ProductHelper.getProducts().then((value) {
+      setState(() {
+        items = value;
+      });
+    });
   }
 
   @override
@@ -39,13 +40,6 @@ class _RegisterBodyState extends State<RegisterBody>
     action.dispose();
     super.dispose();
   }
-
-  List<String> items = [
-    "Retail",
-    "E-commerce",
-    "Health service",
-    "Hospitality and Tourism"
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -76,19 +70,19 @@ class _RegisterBodyState extends State<RegisterBody>
                     ),
                     items: items
                         .map((e) => DropdownMenuItem(
-                              value: e,
-                              child: Text(e),
+                              value: e['name'],
+                              child: Text(e['name']),
                             ))
                         .toList(),
                     onChanged: (value) {
-                      widget.businessType(value!);
+                      // widget.businessType(value!);
                     },
                   ),
                   Padding(
                     padding: const EdgeInsets.all(5.0),
                     child: TextField(
                       onChanged: (value) {
-                        widget.businessName(value);
+                        // widget.businessName(value);
                       },
                       decoration: const InputDecoration(
                           hintText: "Business (Company) Name",
@@ -102,7 +96,7 @@ class _RegisterBodyState extends State<RegisterBody>
                     padding: const EdgeInsets.all(5.0),
                     child: TextField(
                       onChanged: (value) {
-                        widget.registrationNumber(value);
+                        // widget.registrationNumber(value);
                       },
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
@@ -117,7 +111,7 @@ class _RegisterBodyState extends State<RegisterBody>
                     padding: const EdgeInsets.all(5.0),
                     child: TextField(
                       onChanged: (value) {
-                        widget.businessTerms(value);
+                        // widget.businessTerms(value);
                       },
                       decoration: const InputDecoration(
                           hintText: "Business terms (Optional)",

@@ -1,4 +1,5 @@
 import 'package:erisiti/business/businessList/widget/userBusinessListWidget.dart';
+import 'package:erisiti/src/features/screens/dashboard/Business/IssueReceipt/issue.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -17,16 +18,22 @@ class BusinessList extends StatelessWidget {
         ),
         actions: [
           IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const IssueReceiptPage(),
+                ));
+              },
               icon: const Icon(
                 CupertinoIcons.add,
                 color: Colors.white,
               )),
           TextButton(
             onPressed: () {},
-            child: const Text(
-              "issue",
-              style: TextStyle(color: Colors.white),
+            child: PopupMenuButton(
+              position: PopupMenuPosition.under,
+              itemBuilder: (context) => List.generate(4, (value) {
+                return PopupMenuItem(child: Text(value.toString()));
+              }).toList(),
             ),
           )
         ],
