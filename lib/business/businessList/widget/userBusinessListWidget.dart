@@ -25,50 +25,48 @@ class _UserBusinessListWidgetState extends State<UserBusinessListWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return businessInfo.isEmpty
-        ? const Center(
-            child: CircularProgressIndicator(),
-          )
-        : ListView.builder(
-            padding: const EdgeInsets.symmetric(horizontal: 7),
-            itemCount: businessInfo.length,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const ProductList(),
-                        ));
-                  },
-                  style: ButtonStyle(
-                      shape: MaterialStatePropertyAll(RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(21))),
-                      padding:
-                          const MaterialStatePropertyAll(EdgeInsets.all(14)),
-                      elevation: const MaterialStatePropertyAll(7),
-                      alignment: AlignmentDirectional.topStart,
-                      backgroundColor:
-                          MaterialStatePropertyAll(Colors.cyan.shade700)),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "${index + 1}. ${businessInfo[index]['name'].toString()}",
-                        style: const TextStyle(color: Colors.white),
-                      ),
-                      const Icon(
-                        CupertinoIcons.forward,
-                        color: Colors.white,
-                      )
-                    ],
+    return ListView.builder(
+      padding: EdgeInsets.symmetric(horizontal: 7),
+      itemCount: businessInfo.length,
+      itemBuilder: (context, index) {
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: TextButton(
+            onPressed: (){
+              print("Pressed ${index + 1}");
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder:(context) => productList(),
+                )
+              );
+            }, 
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "${index+1}. ${businessInfo[index]['name'].toString()}",
+                  style: TextStyle(
+                    color: Colors.white
                   ),
                 ),
-              );
-            },
-          );
+                Icon(
+                  CupertinoIcons.forward,
+                  color: Colors.white,
+                )
+              ],
+            ),
+            style: ButtonStyle(
+              shape: MaterialStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(21))),
+              padding: MaterialStatePropertyAll(EdgeInsets.all(14)),
+              elevation: MaterialStatePropertyAll(7),
+              alignment: AlignmentDirectional.topStart,
+              backgroundColor: MaterialStatePropertyAll(Colors.cyan.shade700)
+            ),
+          ),
+        );
+      },
+    );
   }
 
   List<dynamic> businessInfo = [];
