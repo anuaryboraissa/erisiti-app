@@ -32,23 +32,20 @@ class _UserBusinessListWidgetState extends State<UserBusinessListWidget> {
         return Padding(
           padding: const EdgeInsets.all(8.0),
           child: TextButton(
-            onPressed: (){
+            onPressed: () {
               print("Pressed ${index + 1}");
               Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder:(context) => productList(),
-                )
-              );
-            }, 
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ProductList(),
+                  ));
+            },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "${index+1}. ${businessInfo[index]['name'].toString()}",
-                  style: TextStyle(
-                    color: Colors.white
-                  ),
+                  "${index + 1}. ${businessInfo[index]['name'].toString()}",
+                  style: TextStyle(color: Colors.white),
                 ),
                 Icon(
                   CupertinoIcons.forward,
@@ -57,12 +54,13 @@ class _UserBusinessListWidgetState extends State<UserBusinessListWidget> {
               ],
             ),
             style: ButtonStyle(
-              shape: MaterialStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(21))),
-              padding: MaterialStatePropertyAll(EdgeInsets.all(14)),
-              elevation: MaterialStatePropertyAll(7),
-              alignment: AlignmentDirectional.topStart,
-              backgroundColor: MaterialStatePropertyAll(Colors.cyan.shade700)
-            ),
+                shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(21))),
+                padding: MaterialStatePropertyAll(EdgeInsets.all(14)),
+                elevation: MaterialStatePropertyAll(7),
+                alignment: AlignmentDirectional.topStart,
+                backgroundColor:
+                    MaterialStatePropertyAll(Colors.cyan.shade700)),
           ),
         );
       },
